@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+	<head>
+		<title>ASCII</title>
+		<style>
+			#container { display: flex }
+			table { border: solid 1px black }
+		</style>
+	</head>
+	<body>
+		<h1><a href="index.html">Index</a> &gt; ASCII</h1>
+
+		<div id="container">
+		</div>
+
+		<template id="t">
+			<table>
+				<thead>
+					<tr>
+						<th>Dec</th>
+						<th>Hex</th>
+						<th>Oct</th>
+						<th>Char</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</template>
+
+		<template id="ti">
+			<tr>
+				<td class="dec"></td>
+				<td class="hex"></td>
+				<td class="oct"></td>
+				<td class="char"></td>
+			</tr>
+		</template>
+
+		<script>
+			const table = [
+				'NUL (null)',
+				'SOH (start of heading)',
+				'STX (start of text)',
+				'ETX (end of text)',
+				'EOT (end of transmission)',
+				'ENQ (enquiry)',
+				'ACK (acknowledge)',
+				'BEL (bell)',
+				'BS (backspace)',
+				'TAB (horizontal tab)',
+				'LF (NL line feed, new line)',
+				'VT (vertical tab)',
+				'FF (NP form feed, new page)',
+				'CR (carriage return)',
+				'SO (shift out)',
+				'SI (shift in)',
+				'DLE (data link escape)',
+				'DC1 (device control 1)',
+				'DC2 (device control 2)',
+				'DC3 (device control 3)',
+				'DC4 (device control 4)',
+				'NAK (negative acknowledge)',
+				'SYN (synchronous idle)',
+				'ETB (end of transmission block)',
+				'CAN (cancel)',
+				'EM (end of medium)',
+				'SUB (substitute)',
+				'ESC (escape)',
+				'FS (file separator)',
+				'GS (group separator)',
+				'RS (record separator)',
+				'US (unit separator)',
+				'Space',
+				'!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/',
+				'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+				':', ';', '<', '=', '>', '?', '@',
+				'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+				'[', '\\', ']', '^', '_', '`',
+				'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+				'{', '|', '}', '~',
+				'DEL'
+			]
+
+			const t = document.getElementById('t')
+			const ti = document.getElementById('ti')
+			const container = document.getElementById('container')
+
+			for (let i = 0; i < 128; i += 32) {
+				const tclone = t.content.cloneNode(true)
+				const body = tclone.querySelector('tbody')
+
+				for (let j = 0; j < 32; j++) {
+					const v = i + j
+					const ticlone = ti.content.cloneNode(true)
+
+					ticlone.querySelector('.dec').textContent = v
+					ticlone.querySelector('.hex').textContent = v.toString(16)
+					ticlone.querySelector('.oct').textContent = v.toString(8)
+					ticlone.querySelector('.char').textContent = table[v]
+
+					body.appendChild(ticlone)
+				}
+
+				container.appendChild(tclone)
+			}
+		</script>
+	</body>
+</html>
